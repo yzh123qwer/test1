@@ -5,12 +5,6 @@
 int ssh(int a);
 int main (void)
 {
-	int a;
-	scanf("%d",&a);
-	if (ssh(a)==0)
-	printf("%d不是素数。\n",a);
-	else
-	printf("%d是素数。\n",a);
 	int x,y,i;
 	scanf(" %d",&a);
 	if(a<=6||a%2!=0)
