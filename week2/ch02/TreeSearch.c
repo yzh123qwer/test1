@@ -1,27 +1,35 @@
 #include<stdio.h>
 #include<malloc.h>
 #include"_Tree.h"
+void print_tree(SearchTree T);
+
 int main (void)
 {
-	struct TreeNode treenode[100];//定义100个还没有关联的节点
-	SearchTree root = &treenode[0];
-	int numbers,i;
-	int tmp_element;
-	printf("please input Element Numbers(<=100):");
-	scanf("%d",&numbers);
+	SearchTree root = NULL;
+	int numbers,i,stack;
+	printf("please input Element Numbers:");
+	scanf_s("%d",&numbers);
 	printf("\n");
-	for (i=0;i<numbers;i++)
+	for(i = 0;i < numbers;i++)
 	{
-		if(i = 0)//第一个元素需要进行初始化定义
-		{
-			MakeEmpty(treenode);
-			printf("please input element:");
-			scanf("%d",&treenode[0].Element);//默认节点数组中第0个是根
-		}
-		printf("please input element:");
-		scanf("%d",&tmp_element);
-		root = Insert(tmp_element,root);
+		printf("please input Element:");
+		scanf_s("%d",&stack);
+		root = Insert(stack,root);
 	}
+	printf("tree elements:");
+	print_tree(root);
 	return 0;
-  //将数据录入以后即可对二叉查找树进行编辑了！
 }
+
+void print_tree(SearchTree T)
+{
+	if(T == NULL)
+		printf("");
+	if(T != NULL)
+	{
+		printf("%d\n",T->Element);
+		print_tree(T->Left);
+		print_tree(T->Right);
+	}
+}
+//打印出二叉查找树中所有的元素，优先打印左边
