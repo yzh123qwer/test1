@@ -123,6 +123,18 @@ static PriorityQueue Find(int X, PriorityQueue H)
 }
 
 PriorityQueue Delete(int X, PriorityQueue H)
+/*
+* 
+* 注：这个删除函数会破坏左式堆的结构！！！！！！！
+* 
+* 最简单的破坏情况：
+* 当左式堆为一个完整二叉树（高度为0的节点全部满了）
+* 此时删除任意一个节点的左子树的节点，则破坏
+* 正确的想法：在删除节点A后，将A父亲（此时A父亲可以视为没有左儿子）的左右儿子交换，A父亲变为左式堆
+* 将A节点的左右子树合并为左式堆，最后将它与A父亲合并得到正确的左式堆
+* 更改方法：利用Find函数不仅得到该节点的指针，还要得到节点的父亲的指针
+* 
+*/
 {
 	PriorityQueue TheElement;
 	TheElement = Find(X, H);//假定一定能找到，如果不能找到只需对Find函数返回的指针稍加判断即可
